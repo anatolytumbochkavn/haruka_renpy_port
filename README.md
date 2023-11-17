@@ -13,8 +13,8 @@ In order to use the application, follow these instructions:
 4. __The project has a programme that allows you to cut long strings! __ After you have translated all received files with extension _.rpy_ into your language, put them in the _translated_text_ folder. Next, write _node split_long_phrases_ in the console (by navigating to the project folder as in step 3). As a result, you will get the same files in the _splitted_strings_output_ folder, but all long strings in each file will be trimmed.
 
 Comments on paragraph 4:
-1. This feature allows you, for example, to add comments to certain character phrases - for example, the meaning of a particular Japanese item of clothing, holiday, and the like.
-2. The programme has some limit by which it determines when to split a line. Go to the _split_long_phrases.js_ file and find the line _const index = 39_ - this is the maximum value for the number of words in a string, meaning that any string with a word count greater than 39 will be split into two lines. You can change the value 39 to any value you like.
+1. This feature allows you, for example, to add comments to certain character phrases – for example, the meaning of a particular Japanese item of clothing, holiday, and the like.
+2. The programme has some limit by which it determines when to split a line. Go to the _split_long_phrases.js_ file and find the line _const index = 39_ – this is the maximum value for the number of words in a string, meaning that any string with a word count greater than 39 will be split into two lines. You can change the value 39 to any value you like.
 3. It is important to note that if your string length is even longer than _index * 2_, the programme will still be able to split your string into 3 phrases, but the case of splitting one string into 4 phrases is not provided.
 
 > Для работы с программой нужно обязательно иметь установленный на компьютере [_Node.js_](https://nodejs.org/ru)!
