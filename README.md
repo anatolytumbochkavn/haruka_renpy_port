@@ -12,7 +12,7 @@ In order to use the application, follow these instructions:
 3. Navigate to the folder path at the command line and type _node script_ – you'll get the finished files with the _.rpy_ extension in the _output_ folder. The _initialize.rpy_ file will declare all the files that were in the created folders. There you can also see where to place certain files already in the _Renpy_ project (for example, character phrases will have the following location: _audio/voice/AK000001_).
 4. __The project has a programme that allows you to cut long strings! __ After you have translated all received files with extension _.rpy_ into your language, put them in the _translated_text_ folder. Next, write _node split_long_phrases_ in the console (by navigating to the project folder as in step 3). As a result, you will get the same files in the _splitted_strings_output_ folder, but all long strings in each file will be trimmed.
 
-__Comments on paragraph 4:__
+Comments on paragraph 4:
 1. This feature allows you, for example, to add comments to certain character phrases - for example, the meaning of a particular Japanese item of clothing, holiday, and the like.
 2. The programme has some limit by which it determines when to split a line. Go to the _split_long_phrases.js_ file and find the line _const index = 39_ - this is the maximum value for the number of words in a string, meaning that any string with a word count greater than 39 will be split into two lines. You can change the value 39 to any value you like.
 3. It is important to note that if your string length is even longer than _index * 2_, the programme will still be able to split your string into 3 phrases, but the case of splitting one string into 4 phrases is not provided.
@@ -25,7 +25,7 @@ __Comments on paragraph 4:__
 3. Перейдите по пути к папке в командной строке и введите _node script_ – вы получите готовые файлы с расширением _.rpy_ в папке _output_. В файле _initialize.rpy_ будут объявлены все файлы, находившиеся в созданных папках. Там же вы можете посмотреть, куда поместить те или иные файлы уже в проекте _Renpy_ (например, фразы персонажей будут иметь следующее расположение: _audio/voice/AK000001_).
 4. __В проекте есть программа, позволяющая обрезать длинные строки!__ После того как вы переведёте все полученные файлы с расширением _.rpy_ на ваш язык, поместите их в папку _translated_text_. Далее напишите в консоли (перейдя по пути к папке проекта, как в пункте 3) _node split_long_phrases_. В результате вы получите эти же файлы в папке _splitted_strings_output_, но все длинные строки в каждом файле будут обрезаны.
 
-__Замечания по пункту 4:__
+Замечания по пункту 4:
 1. Данная функция позволяет вам, к примеру, добавлять комментарии к некоторым фразам персонажей – например, значение того или иного японского предмета одежды, праздника и тому подобного.
 2. У программы есть некоторый предел, по которому она определяет, когда нужно разделять строку. Перейдите в файл _split_long_phrases.js_ и найдите строку _const index = 39_ – это максимальное значение количества слов в строке, то есть любая строка с количеством слов, превышающим 39, будет разделена на две строки. Вы можете изменить значение 39 на любое по своему усмотрению.
 3. Важно отметить, что если длина вашей строки даже больше, чем _index * 2_, то программа всё равно сможет разделить вашу строку на 3 фразы, однако случай с разделением одной строки на 4 фразы не предусмотрен.
