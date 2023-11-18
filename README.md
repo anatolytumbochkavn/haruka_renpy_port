@@ -17,7 +17,7 @@ Comments on paragraph 4:
 2. The programme has some limit by which it determines when to split a line. Go to the _split_long_phrases.js_ file and find the line _const index = 39_ – this is the maximum value for the number of words in a string, meaning that any string with a word count greater than 39 will be split into two lines. You can change the value 39 to any value you like.
 3. It is important to note that if your string length is even longer than _index * 2_, the programme will still be able to split your string into 3 phrases, but the case of splitting one string into 4 phrases is not provided.
 
-> Для работы с программой нужно обязательно иметь установленный на компьютере [_Node.js_](https://nodejs.org/ru)!
+> Для работы с программой обязательно иметь установленный на компьютере [_Node.js_](https://nodejs.org/ru)!
 
 Для того чтобы использовать приложение, следуйте этим указаниям:
 1. Создайте несколько папок со следующими именами: _cg_, _voice_, _sprites_, _sound_, _output_, _translated_text_, _splitted_strings_output_. Если вы выберете другие имена для папок, то программа выдаст ошибку.
