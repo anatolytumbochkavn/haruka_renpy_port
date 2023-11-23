@@ -3,6 +3,8 @@ const path = require("path");
 
 const translatedTextFolder = fs.readdirSync(path.join(__dirname, "translated_text"));
 
+let counter = 0;
+
 translatedTextFolder.forEach(el => {
     const file = fs.readFileSync(path.join(__dirname, "translated_text", el)).toString().split("\n");
     const resultArray = [];
@@ -27,18 +29,35 @@ translatedTextFolder.forEach(el => {
                 text = trimmedPhrase.slice(trimmedPhrase.indexOf("\"") + 1, trimmedPhrase.length - 1);
             }
 
-            const phraseArray = text.split(" ");
+            if (text.length > 290) {
+                counter++;
 
-            const index = 39;
+                let phrasesArray = text.split(" ");
+                const newStringArray = [];
 
-            if (phraseArray.length > index) {
-                if (phraseArray.length > index * 2) {
-                    resultArray.push(name ? `    ${name} "${phraseArray.slice(0, index).join(" ")}"` : `    "${phraseArray.slice(0, index).join(" ")}"`);
-                    resultArray.push(name ? `    ${name} "${phraseArray.slice(index, index * 2).join(" ")}"` : `    "${phraseArray.slice(index, index * 2).join(" ")}"`);
-                    resultArray.push(name ? `    ${name} "${phraseArray.slice(index * 2, phraseArray.length).join(" ")}"` : `    "${phraseArray.slice(index * 2, phraseArray.length).join(" ")}"`);
+                let additionArray = text.split(" ");
+
+                for (let i = phrasesArray.length - 1; i > -1; i--) {
+                    if (additionArray.join(" ").length > 290) {
+                        additionArray = additionArray.slice(0, i);
+                        newStringArray.unshift(phrasesArray[i]);
+                    } else {
+                        break;
+                    }
+                }
+
+                phrasesArray = phrasesArray.slice(0, additionArray.length);
+
+                if (newStringArray.join(" ").includes("{/i}") && !newStringArray.join(" ").includes("{i}")) {
+                    newStringArray[0] = "{i}" + newStringArray[0];
+                }
+
+                if (name) {
+                    resultArray.push(`    ${name} "${phrasesArray.join(" ")}"`);
+                    resultArray.push(`    ${name} "${newStringArray.join(" ")}"`);
                 } else {
-                    resultArray.push(name ? `    ${name} "${phraseArray.slice(0, index).join(" ")}"` : `    "${phraseArray.slice(0, index).join(" ")}"`);
-                    resultArray.push(name ? `    ${name} "${phraseArray.slice(index, phraseArray.length).join(" ")}"` : `    "${phraseArray.slice(index, phraseArray.length).join(" ")}"`);
+                    resultArray.push(`    "${phrasesArray.join(" ")}"`);
+                    resultArray.push(`    "${newStringArray.join(" ")}"`);
                 }
             } else {
                 resultArray.push(element);
@@ -51,4 +70,4 @@ translatedTextFolder.forEach(el => {
     fs.writeFileSync(path.join(__dirname, "splitted_strings_output", el), resultArray.join("\n"));
 });
 
-console.log("Separation of long strings has been performed successfully.")
+console.log(`Separation of long strings has been performed successfully. Number of divided phrases: ${counter}.`)

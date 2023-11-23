@@ -13,6 +13,20 @@ initFile.push("init:");
 initFile.push("    python:");
 initFile.push("        renpy.music.register_channel(\"ambience\", \"voice\", True)");
 initFile.push("");
+initFile.push(`    $ ClassRep = Character("Староста")`);
+initFile.push(`    $ All = Character("Все")`);
+initFile.push(`    $ PostOfficeClerk = Character("Почтальон")`);
+initFile.push(`    $ DeliveryPerson = Character("Доставщик")`);
+initFile.push(`    $ Haruka = Character("Харука")`);
+initFile.push(`    $ Sora = Character("Сора")`);
+initFile.push(`    $ Akira = Character("Акира")`);
+initFile.push(`    $ Kazuha = Character("Казуха")`);
+initFile.push(`    $ Ryouhei = Character("Рёхэй")`);
+initFile.push(`    $ Classmate = Character("Одноклассник")`);
+initFile.push(`    $ Umpire = Character("Судья")`);
+initFile.push(`    $ Clerk = Character("Кассир")`);
+initFile.push(`    $ Nao = Character("Нао")`);
+initFile.push("");
 initFile.push("    transform right:\n        xalign 0.90\n        yalign 1.0");
 initFile.push("    transform left:\n        xalign 0.10\n        yalign 1.0");
 initFile.push("    transform cright:\n        xalign 0.75\n        xanchor 0.5\n        yanchor 0.0");
@@ -51,7 +65,7 @@ sprites.forEach(el => {
     } else if (el.includes("CH")) {
         initFile.push(`    image ClassRepS ${spriteId}:\n        ${path}/${el}\"\n        yanchor 0.0\n        yalign 1.0\n        xanchor 0.5`);
     } else if (el.includes("CJ")) {
-        initFile.push(`    image DvorS ${spriteId}:\n        ${path}/${el}\"\n        yanchor 0.0\n        yalign 1.0\n        xanchor 0.5`);
+        initFile.push(`    image ButlerS ${spriteId}:\n        ${path}/${el}\"\n        yanchor 0.0\n        yalign 1.0\n        xanchor 0.5`);
     }
 });
 
@@ -93,7 +107,7 @@ files.forEach(el => {
 files.forEach(el => {
     let renpyFile = [];
 
-    renpyFile.push("init:");
+    /* renpyFile.push("init:"); */
 
     const file = fs.readFileSync(path.join(__dirname, "scenario", el), "utf16le").toString().split("\n");
 
@@ -116,7 +130,7 @@ files.forEach(el => {
         }
     }
 
-    for (let i = 0; i < file2.length; i++) {
+    /* for (let i = 0; i < file2.length; i++) {
         file2[i] = file2[i].replace(/["]+/g, "'");
 
         if (file2[i].includes("@Talk")) {
@@ -174,20 +188,6 @@ files.forEach(el => {
                     break;
             }
 
-            /* if (charName == "心の声") {
-                continue;
-            } else if (charName == "Class Rep" || charName == "Class　Rep") {
-                charName = "$ ClassRep = Character(\"Class Rep\")";
-            } else if (charName == "Ryouehi and Akira and Haruka and Sora" || charName == "Ryouehi　and　Akira　and　Haruka　and　Sora") {
-                charName = "$ All = Character(\"All\")";
-            } else if (charName == "Post Office Clerk" || charName == "Post　Office　Clerk") {
-                charName = "$ PostOfficeClerk = Character(\"PostOfficeClerk\")";
-            } else if (charName == "Delivery Person" || charName == "Delivery　Person") {
-                charName = "$ DeliveryPerson = Character(\"DeliveryPerson\")";
-            } else {
-                charName = `$ ${charName} = Character("${charName}")`;
-            } */
-
             if (charName != "心の声") {
                 namesArray.push(charName);
             }
@@ -200,7 +200,7 @@ files.forEach(el => {
         namesArray[i] = "    " + namesArray[i];
     }
 
-    renpyFile = renpyFile.concat(namesArray);
+    renpyFile = renpyFile.concat(namesArray); */
     renpyFile.push(`label ${el.slice(3, el.indexOf("."))}:`);
 
     let currentScene;
@@ -418,7 +418,7 @@ files.forEach(el => {
             } else if (charId.includes("CH")) {
                 charName = "ClassRepS";
             } else if (charId.includes("CJ")) {
-                charName = "ДворецкийS";
+                charName = "ButlerS";
             }
 
             checkSprites();
@@ -545,4 +545,4 @@ files.forEach(el => {
     fs.writeFileSync(path.join(__dirname, "output", el + ".rpy"), renpyFile.join("\n"));
 });
 
-console.log("Complete!");
+console.log("KiriKiri engine files have been successfully rebuilt on Ren'Py.");
